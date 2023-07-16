@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "moduleResolution": "Node",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    },
+    {
+      "path": "./tsconfig.app.json"
+    }
+  ],
+  "include": [
+    "./components.d.ts",
+    "src/**/*.ts",
+    "./auto-imports.d.ts",
+    "src/**/*.vue",
+    "./env.d.ts",
+    "@/**/*.vue"
+  ],
+  "exclude": ["node_modules", "dist", "**/*.js"]
+}
