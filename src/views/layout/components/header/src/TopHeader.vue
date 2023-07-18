@@ -3,9 +3,11 @@
         <div class="header-nav-bar w-full h-full flex px-2">
             <div class="flex-1 flex">
                 <div class="nav-item">
-                    <div class="topbar-icon-nav">
-                        <el-tooltip class="box-item" effect="dark" content="隐藏菜单" placement="bottom">
-                            <SvgIcon name="fold" :size="20"></SvgIcon>
+                    <div class="topbar-icon-nav" @click="toggleAsideMenu">
+                        <el-tooltip class="box-item" effect="dark" :content="isCollapse ? '显示菜单' : '隐藏菜单'"
+                            placement="bottom">
+                            <SvgIcon name="expand" :size="20" v-if="isCollapse"></SvgIcon>
+                            <SvgIcon name="fold" :size="20" v-else></SvgIcon>
                         </el-tooltip>
                     </div>
                 </div>
@@ -73,14 +75,21 @@
 
 <script setup lang="ts">
 import { SvgIcon } from '@/components/SvgIcon'
+import { storeToRefs } from 'pinia'
+import { interfaceSettingStore } from '@/stores/modules/InterfaceSetting'
 
 const state = reactive({
-
     squareUrl:
         'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png'
 })
 const { squareUrl } = toRefs(state)
+const interfaceSetting = interfaceSettingStore()
 
+const { isCollapse } = storeToRefs(interfaceSetting)
+
+const toggleAsideMenu = () => {
+    interfaceSetting.toggleMenuCollapse()
+}
 </script>
 
 <style lang="postcss" scoped>
