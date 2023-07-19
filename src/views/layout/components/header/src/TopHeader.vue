@@ -37,9 +37,10 @@
                     </div>
                 </div>
                 <div class="nav-item">
-                    <div class="topbar-icon-nav">
+                    <div class="topbar-icon-nav" @click="toogleFullScreen">
                         <el-tooltip class="box-item" effect="dark" content="全屏" placement="bottom">
-                            <SvgIcon name="fullscreen" :size="16"></SvgIcon>
+                            <SvgIcon name="fullscreen-exit" :size="16" v-if="isFullscreen"></SvgIcon>
+                            <SvgIcon name="fullscreen" :size="16" v-else></SvgIcon>
                         </el-tooltip>
                     </div>
                 </div>
@@ -77,6 +78,9 @@
 import { SvgIcon } from '@/components/SvgIcon'
 import { storeToRefs } from 'pinia'
 import { interfaceSettingStore } from '@/stores/modules/InterfaceSetting'
+import { useFullscreen } from '@vueuse/core'
+
+const { isFullscreen, toggle: toogleFullScreen } = useFullscreen()
 
 const state = reactive({
     squareUrl:

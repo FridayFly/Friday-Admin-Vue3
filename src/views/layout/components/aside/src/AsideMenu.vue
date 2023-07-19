@@ -3,7 +3,7 @@
         <div class="menu-wrap flex h-full flex-col">
             <div class="logo-title flex items-center w-full">
                 <el-image :src="logoUrl" fit="cover" class="h-8 hover:-translate-y-1 hover:scale-110 mx-3" />
-                <span class="text-lg font-bold" v-show="!isCollapse">Friday Admin</span>
+                <span class="text-lg font-bold hover:brightness-125" v-show="!isCollapse">Friday Admin</span>
             </div>
             <el-scrollbar>
                 <el-menu default-active="2" class="fr-vertical-menu h-full min-h-fit" :collapse="isCollapse"

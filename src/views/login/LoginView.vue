@@ -24,7 +24,7 @@
         </div>
       </el-main>
       <el-footer class="text-center">
-        <el-text class="mx-1" type="info">Copyright © 2023 Friday Admin</el-text>
+        <el-text class="mx-1" type="info">{{ siteConfig.getCopyright }}</el-text>
       </el-footer>
     </el-container>
   </div>
@@ -32,6 +32,8 @@
 
 <script setup lang="ts">
 import type { FormInstance, FormRules } from 'element-plus'
+import { siteConfigStore } from '@/stores/modules/SiteConfig'
+const siteConfig = siteConfigStore();
 
 interface FrmLogin {
   loginAccount: string
