@@ -29,12 +29,10 @@ declare module 'vue' {
     ElText: typeof import('element-plus/es')['ElText']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     IEpArrowDown: typeof import('~icons/ep/arrow-down')['default']
-    IEpLock: typeof import('~icons/ep/lock')['default']
-    IEpMemo: typeof import('~icons/ep/memo')['default']
     IEpRefreshRight: typeof import('~icons/ep/refresh-right')['default']
-    IEpSetting: typeof import('~icons/ep/setting')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SvgIcon: typeof import('./src/components/SvgIcon/src/SvgIcon.vue')['default']
+    SysIcon: typeof import('./src/components/icon/src/SysIcon.vue')['default']
   }
 }

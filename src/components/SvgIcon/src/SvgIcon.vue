@@ -13,7 +13,7 @@ export default defineComponent({
     props: {
         prefix: {
             type: String,
-            default: 'icon',
+            default: 'local',
         },
         size: {
             type: [Number, String],
@@ -33,7 +33,7 @@ export default defineComponent({
             return !Object.is(Number(value), NaN) ? `${value}${unit}` : value;
         };
 
-        const symbolId = computed(() => `#${props.prefix}-${props.name}`)
+        const symbolId = computed(() => `#${props.name}`)
         const styles = computed<CSSProperties>(() => {
             return {
                 width: addUnit(props.size),

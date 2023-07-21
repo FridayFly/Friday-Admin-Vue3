@@ -6,8 +6,8 @@
                     <div class="topbar-icon-nav" @click="toggleAsideMenu">
                         <el-tooltip class="box-item" effect="dark" :content="isCollapse ? '显示菜单' : '隐藏菜单'"
                             placement="bottom">
-                            <SvgIcon name="expand" :size="20" v-if="isCollapse"></SvgIcon>
-                            <SvgIcon name="fold" :size="20" v-else></SvgIcon>
+                            <sys-icon name="local-expand" :size="20" v-if="isCollapse"></sys-icon>
+                            <sys-icon name="local-fold" :size="20" v-else></sys-icon>
                         </el-tooltip>
                     </div>
                 </div>
@@ -31,16 +31,18 @@
             <div class="flex">
                 <div class="nav-item">
                     <div class="topbar-icon-nav">
-                        <el-tooltip class="box-item" effect="dark" content="访问GitHub" placement="bottom">
-                            <SvgIcon name="github" :size="24"></SvgIcon>
-                        </el-tooltip>
+                        <a href="https://github.com/FridayFly/Friday-Admin-Vue3" target="_blank">
+                            <el-tooltip class="box-item" effect="dark" content="访问GitHub" placement="bottom">
+                                <sys-icon name="local-github" :size="24"></sys-icon>
+                            </el-tooltip>
+                        </a>
                     </div>
                 </div>
                 <div class="nav-item">
                     <div class="topbar-icon-nav" @click="toogleFullScreen">
                         <el-tooltip class="box-item" effect="dark" content="全屏" placement="bottom">
-                            <SvgIcon name="fullscreen-exit" :size="16" v-if="isFullscreen"></SvgIcon>
-                            <SvgIcon name="fullscreen" :size="16" v-else></SvgIcon>
+                            <sys-icon name="local-fullscreen-exit" :size="16" v-if="isFullscreen"></sys-icon>
+                            <sys-icon name="local-fullscreen" :size="16" v-else></sys-icon>
                         </el-tooltip>
                     </div>
                 </div>
@@ -63,9 +65,7 @@
                 <div class="nav-item">
                     <div class="topbar-icon-nav">
                         <el-tooltip class="box-item" effect="dark" content="界面配置" placement="bottom">
-                            <el-icon :size="16">
-                                <IEpSetting />
-                            </el-icon>
+                            <sys-icon name="local-layout" :size="16"></sys-icon>
                         </el-tooltip>
                     </div>
                 </div>
@@ -75,7 +75,6 @@
 </template>
 
 <script setup lang="ts">
-import { SvgIcon } from '@/components/SvgIcon'
 import { storeToRefs } from 'pinia'
 import { interfaceSettingStore } from '@/stores/modules/InterfaceSetting'
 import { useFullscreen } from '@vueuse/core'
@@ -102,7 +101,6 @@ const toggleAsideMenu = () => {
     display: flex;
     align-items: center;
 }
-
 
 .el-dropdown-link:focus-visible {
     outline: none;

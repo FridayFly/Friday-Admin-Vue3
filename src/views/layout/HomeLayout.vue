@@ -10,8 +10,10 @@ const siteConfig = siteConfigStore();
         <el-container>
             <TopHeader />
             <el-main>Main</el-main>
-            <el-footer style="height: var(--fr-top-footer-height);" class="text-center">{{ siteConfig.getCopyright
-            }}</el-footer>
+            <el-footer style="height: var(--fr-top-footer-height);" class="text-center">
+                <span class="text-sm text text-neutral-400">{{
+                    siteConfig.getCopyright }}</span>
+            </el-footer>
         </el-container>
     </div>
 </template>

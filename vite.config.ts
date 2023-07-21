@@ -55,7 +55,7 @@ export default defineConfig(({ command, mode }) => {
         // Specify the icon folder to be cached
         iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],
         // Specify symbolId format
-        symbolId: 'icon-[dir]-[name]'
+        symbolId: 'local-[dir]-[name]'
       })
     ],
     resolve: {
