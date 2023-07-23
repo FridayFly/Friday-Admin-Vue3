@@ -9,7 +9,13 @@ const siteConfig = siteConfigStore();
         <AsideMenu />
         <el-container>
             <TopHeader />
-            <el-main>Main</el-main>
+            <el-main>
+                <el-scrollbar>
+                    <div class="pl-2">
+                        <RouterView />
+                    </div>
+                </el-scrollbar>
+            </el-main>
             <el-footer style="height: var(--fr-top-footer-height);" class="text-center">
                 <span class="text-sm text text-neutral-400">{{
                     siteConfig.getCopyright }}</span>
@@ -17,4 +23,8 @@ const siteConfig = siteConfigStore();
         </el-container>
     </div>
 </template>
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.el-main {
+    --el-main-padding: 0px;
+}
+</style>

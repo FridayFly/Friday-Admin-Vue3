@@ -18,7 +18,6 @@ export const siteConfigStore = defineStore('site-config', {
     getCopyright: (state): string => {
       const currentDate = new Date()
       const year: number = currentDate.getFullYear()
-      console.log('get 被调用了')
       return state.copyright.replace(/\{year\}/g, year.toString())
     }
   }

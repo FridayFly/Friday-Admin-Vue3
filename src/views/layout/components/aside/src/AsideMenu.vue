@@ -6,7 +6,7 @@
                 <span class="text-lg font-bold hover:brightness-125" v-show="!isCollapse">Friday Admin</span>
             </div>
             <el-scrollbar>
-                <el-menu default-active="2" class="fr-vertical-menu h-full min-h-fit" :collapse="isCollapse"
+                <el-menu default-active="1" class="fr-vertical-menu h-full min-h-fit" :collapse="isCollapse"
                     style="border-width: 0;">
                     <menu-item :menu="menu" v-for="menu in menuList" :key="menu.id" />
                 </el-menu>
@@ -22,6 +22,24 @@ import logoUrl from '@/assets/images/logo.png'
 import MenuItem from './MenuItem.vue'
 
 const menuList = [
+    {
+        "id": 1,
+        "menuName": "工作台",
+        "url": 'home',
+        "target": null,
+        "pid": 0,
+        "ico": 'local-screen',
+        "menuType": "PAGE",
+    },
+    {
+        "id": 99,
+        "menuName": "关于我们",
+        "url": '/about',
+        "target": null,
+        "pid": 0,
+        "ico": 'local-screen',
+        "menuType": "PAGE",
+    },
     {
         "id": 6,
         "menuName": "权限控制",

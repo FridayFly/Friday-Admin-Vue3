@@ -19,7 +19,8 @@ export default defineConfig(({ command, mode }) => {
   console.log('mode:', mode)
   const env = loadEnv(mode, process.cwd())
   console.log('env:', env)
-  return {
+
+  const configs = {
     // vite 配置
     define: {
       __APP_ENV__: env.APP_ENV
@@ -62,6 +63,20 @@ export default defineConfig(({ command, mode }) => {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url))
       }
+    },
+    server: {}
+  }
+
+  if (mode == 'development') {
+    configs.server = {
+      proxy: {
+        '/api': {
+          target: 'http://127.0.0.1:8888',
+          changeOrigin: true,
+          rewrite: (path: string) => path.replace(/^\/api/, '')
+        }
+      }
     }
   }
+  return configs
 })

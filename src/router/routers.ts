@@ -1,21 +1,29 @@
-import type { RouteRecordRaw } from "vue-router"
-import HomeLayout from "@/views/layout/HomeLayout.vue"
-
+import type { RouteRecordRaw } from 'vue-router'
 const Routers: RouteRecordRaw[] = [
   {
-    path: "/",
-    component: HomeLayout
-  },
-    {
-    path: "/:pathMatch(.*)*",
-    name: "404",
-    component: () => import("../views/common/page-404.vue")
+    path: '/home',
+    component: () => import('@/views/layout/HomeLayout.vue'),
+    children: [
+      {
+        path: '',
+        component: () => import('../views/home/HomeView.vue')
+      },
+      {
+        path: 'about',
+        component: () => import('../views/AboutView.vue')
+      }
+    ]
   },
   {
-    path: "/login",
-    name: "Login",
+    path: '/:pathMatch(.*)*',
+    name: '404',
+    component: () => import('../views/common/page-404.vue')
+  },
+  {
+    path: '/login',
+    name: 'Login',
     component: () => import('../views/login/LoginView.vue')
   }
-];
+]
 
-export default Routers;
+export default Routers

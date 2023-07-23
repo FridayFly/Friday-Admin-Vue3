@@ -2,7 +2,9 @@
     <el-icon :size="props.size" :color="props.color" v-if="isElIcon">
         <component :is="icoName"></component>
     </el-icon>
-    <svg-icon :name="icoName" :size="size" :color="color" v-else />
+    <el-icon :size="size" v-else>
+        <svg-icon :name="icoName" :size="size" :color="color" />
+    </el-icon>
 </template>
 <script setup lang="ts">
 import { EL_ICON_PREFIX, LOCAL_ICON_PREFIX } from '../index'

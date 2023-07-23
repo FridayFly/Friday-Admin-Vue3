@@ -31,7 +31,7 @@
             <div class="flex">
                 <div class="nav-item">
                     <div class="topbar-icon-nav">
-                        <a href="https://github.com/FridayFly/Friday-Admin-Vue3" target="_blank">
+                        <a href="https://github.com/FridayFly/Friday-Admin-Vue3" style="line-height: 0;" target="_blank">
                             <el-tooltip class="box-item" effect="dark" content="访问GitHub" placement="bottom">
                                 <sys-icon name="local-github" :size="24"></sys-icon>
                             </el-tooltip>

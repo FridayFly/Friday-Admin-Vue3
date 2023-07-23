@@ -20,7 +20,7 @@ export interface Menu {
     target?: string | null
     ico?: string | null
     menuType: string
-    children: Menu[] | null
+    children?: Menu[] | null
 }
 
 defineProps<{
