@@ -49,7 +49,8 @@
                 <div class="nav-item">
                     <el-dropdown class="mx-4">
                         <span class="el-dropdown-link">
-                            <el-avatar shape="square" class="mr-2" :size="''" :src="squareUrl" /> 管理员
+                            <el-avatar shape="square" class="mr-2" :size="''" :src="squareUrl" /> {{ userSession.accountName
+                            }}
                             <el-icon class="el-icon--right">
                                 <IEpArrowDown />
                             </el-icon>
@@ -57,7 +58,7 @@
                         <template #dropdown>
                             <el-dropdown-menu>
                                 <el-dropdown-item>个人设置</el-dropdown-item>
-                                <el-dropdown-item>退出登录 </el-dropdown-item>
+                                <el-dropdown-item @click="logout()">退出登录 </el-dropdown-item>
                             </el-dropdown-menu>
                         </template>
                     </el-dropdown>
@@ -78,7 +79,11 @@
 import { storeToRefs } from 'pinia'
 import { interfaceSettingStore } from '@/stores/modules/InterfaceSetting'
 import { useFullscreen } from '@vueuse/core'
+import { userSessionStore } from '@/stores/modules/UserSessionInfo'
+import { logout as logoutApi } from '@/api/permission/user'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const { isFullscreen, toggle: toogleFullScreen } = useFullscreen()
 
 const state = reactive({
@@ -87,11 +92,28 @@ const state = reactive({
 })
 const { squareUrl } = toRefs(state)
 const interfaceSetting = interfaceSettingStore()
-
+const userSession = userSessionStore()
 const { isCollapse } = storeToRefs(interfaceSetting)
 
 const toggleAsideMenu = () => {
     interfaceSetting.toggleMenuCollapse()
+}
+
+const logout = () => {
+    logoutApi().then(
+        (response) => {
+            if (response.code == "0") {
+                router.push('/login')
+                return
+            }
+            ElMessage({
+                showClose: true,
+                message: response.msg,
+                type: 'error',
+            })
+        }
+    )
+
 }
 </script>
 

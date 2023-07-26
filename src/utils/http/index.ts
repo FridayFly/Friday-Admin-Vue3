@@ -1,5 +1,7 @@
 import HttpWrapper from './httpWrapper'
 import type { RequestConfig, InitOptions } from './httpWrapper'
+import { userSessionStore } from '@/stores/modules/UserSessionInfo'
+const userSession = userSessionStore()
 
 const DEFAULT_API_TIMEOUT = 3000
 
@@ -20,6 +22,9 @@ const initOptions: InitOptions = {
   requestInterceptorHook: (config: RequestConfig) => {
     // todo 加token
     console.log('request config', config)
+    if (config.ignoreToken === undefined || !config.ignoreToken) {
+      config.headers!.Authorization = `Bearer ${userSession.accessToken}`
+    }
     return config
   },
   requestInterceptorErrorHook: (error) => {
