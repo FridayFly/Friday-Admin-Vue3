@@ -2,6 +2,14 @@
 import { AsideMenu } from './components/aside'
 import { TopHeader } from './components/header'
 import { siteConfigStore } from '@/stores/modules/SiteConfig'
+import { getCommonInfo } from '@/api/common/commonApi'
+import { CustomerCommonInfoStore } from '@/stores/modules/CommonInfo'
+const commonInfo = CustomerCommonInfoStore()
+getCommonInfo().then((response) => {
+    if (response.code == "0") {
+        commonInfo.loadApiData(response.data)
+    }
+})
 const siteConfig = siteConfigStore();
 </script>
 <template>

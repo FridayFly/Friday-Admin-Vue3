@@ -6,6 +6,4 @@
   <RouterView />
 </template>
 
-<style scoped>
-
-</style>
+<style lang="scss"></style>

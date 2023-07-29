@@ -1,10 +1,10 @@
-import './styles/index.scss'
 import { createApp } from 'vue'
 
 import App from './App.vue'
 import router from './router'
 import { initStore } from './stores'
 import { loadIcon } from '@/components/icon'
+import './styles/index.scss'
 import 'virtual:svg-icons-register'
 
 const app = createApp(App)

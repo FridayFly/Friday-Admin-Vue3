@@ -1,6 +1,7 @@
 import HttpWrapper from './httpWrapper'
 import type { RequestConfig, InitOptions } from './httpWrapper'
 import { userSessionStore } from '@/stores/modules/UserSessionInfo'
+
 const userSession = userSessionStore()
 
 const DEFAULT_API_TIMEOUT = 3000
@@ -13,6 +14,30 @@ function showErrorMsgbox(code: string, message: string) {
   })
 }
 
+function showAlertMsgBox(message: string, callback?: () => void) {
+  ElMessageBox.alert(message, '', {
+    type: 'warning',
+    icon: 'WarningFilled',
+    callback
+  })
+}
+
+function applyAccessToken(config: RequestConfig): RequestConfig {
+  if (config.ignoreToken === undefined || !config.ignoreToken) {
+    if (userSession.accessToken == '') {
+      const controller = new AbortController()
+      const cfg = {
+        ...config,
+        signal: controller.signal
+      }
+      controller.abort('Request was abort, because can not get access token.')
+      return cfg
+    }
+    config.headers!.Authorization = `Bearer ${userSession.accessToken}`
+  }
+  return config
+}
+
 const initOptions: InitOptions = {
   baseURL: import.meta.env.VITE_API_BASE_URL,
   timeout:
@@ -20,11 +45,7 @@ const initOptions: InitOptions = {
       ? DEFAULT_API_TIMEOUT
       : import.meta.env.VITE_API_TIMEOUT,
   requestInterceptorHook: (config: RequestConfig) => {
-    // todo 加token
-    console.log('request config', config)
-    if (config.ignoreToken === undefined || !config.ignoreToken) {
-      config.headers!.Authorization = `Bearer ${userSession.accessToken}`
-    }
+    config = applyAccessToken(config)
     return config
   },
   requestInterceptorErrorHook: (error) => {
@@ -33,9 +54,17 @@ const initOptions: InitOptions = {
   responseInterceptorsHook: (response) => {
     if (response.data.code == '5001') {
       showErrorMsgbox('', response.data.msg)
-    } else {
-      return response.data
     }
+    if (response.data.code == '1005') {
+      userSession.accessToken = ''
+      showAlertMsgBox(response.data.msg, () => {
+        window.location.href = '/login'
+      })
+    }
+    if (response.data.code == '1002') {
+      window.location.href = '/login'
+    }
+    return response.data
   },
   responseInterceptorsErrorHook(error: any) {
     // TODO:服务器端错误都会走到这里，非2xx的错误信息,需要弹框提示

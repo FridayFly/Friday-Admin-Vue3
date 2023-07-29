@@ -10,6 +10,7 @@ import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import path from 'path'
+import { createStyleImportPlugin, ElementPlusResolve } from 'vite-plugin-style-import'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
@@ -32,7 +33,9 @@ export default defineConfig(({ command, mode }) => {
         // global imports to register
         imports: ['vue', 'vue-router'],
         resolvers: [
-          ElementPlusResolver(),
+          ElementPlusResolver({
+            importStyle: 'sass'
+          }),
           // Auto import icon components
           // 自动导入图标组件
           IconsResolver()
@@ -46,8 +49,14 @@ export default defineConfig(({ command, mode }) => {
           IconsResolver({
             enabledCollections: ['ep']
           }),
-          ElementPlusResolver()
+          ElementPlusResolver({
+            //importStyle: mode === 'development' ? false : 'sass'
+            importStyle: 'sass'
+          })
         ]
+      }),
+      createStyleImportPlugin({
+        resolves: [ElementPlusResolve()]
       }),
       Icons({
         autoInstall: true
@@ -64,10 +73,17 @@ export default defineConfig(({ command, mode }) => {
         '@': fileURLToPath(new URL('./src', import.meta.url))
       }
     },
-    server: {}
+    server: {},
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@use "src/styles/var.scss" as *;`
+        }
+      }
+    }
   }
 
-  if (mode == 'development') {
+  if (mode == 'development' || mode == 'test') {
     configs.server = {
       proxy: {
         '/api': {
