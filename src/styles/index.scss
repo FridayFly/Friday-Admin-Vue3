@@ -2,3 +2,16 @@
 svg {
   outline: none;
 }
+.el-button {
+  background-color: var(--el-button-bg-color, var(--el-color-white));
+  &:focus {
+    border-color: var(--el-button-border-color);
+    background-color: var(--el-button-bg-color);
+  }
+
+  &:hover {
+    color: var(--el-button-hover-text-color);
+    border-color: var(--el-button-hover-border-color);
+    background-color: var(--el-button-hover-bg-color);
+  }
+}

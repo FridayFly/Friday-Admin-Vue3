@@ -36,7 +36,6 @@ import { siteConfigStore } from '@/stores/modules/SiteConfig'
 import { login } from '@/api/permission/user'
 import { useRouter } from 'vue-router'
 import { userSessionStore } from '@/stores/modules/UserSessionInfo'
-
 const router = useRouter()
 
 const siteConfig = siteConfigStore()
@@ -79,7 +78,7 @@ const submitLogin = async (formEl: FormInstance | undefined) => {
             let userData = response.data
             userSession.accessToken = userData.accessToken
             userSession.accountName = userData.accountDisplayName
-            router.push('/home')
+            router.push('/')
             return
           }
 

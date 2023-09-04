@@ -12,7 +12,7 @@ import { EL_ICON_PREFIX, LOCAL_ICON_PREFIX } from '../index'
 export interface Props {
     size?: string | number
     name: string | null
-    color: string
+    color?: string
 }
 const props = withDefaults(defineProps<Props>(), {
     size: '14px',

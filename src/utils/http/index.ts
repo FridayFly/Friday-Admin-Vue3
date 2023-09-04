@@ -2,8 +2,6 @@ import HttpWrapper from './httpWrapper'
 import type { RequestConfig, InitOptions } from './httpWrapper'
 import { userSessionStore } from '@/stores/modules/UserSessionInfo'
 
-const userSession = userSessionStore()
-
 const DEFAULT_API_TIMEOUT = 3000
 
 function showErrorMsgbox(code: string, message: string) {
@@ -23,6 +21,8 @@ function showAlertMsgBox(message: string, callback?: () => void) {
 }
 
 function applyAccessToken(config: RequestConfig): RequestConfig {
+  const userSession = userSessionStore()
+
   if (config.ignoreToken === undefined || !config.ignoreToken) {
     if (userSession.accessToken == '') {
       const controller = new AbortController()
@@ -52,6 +52,8 @@ const initOptions: InitOptions = {
     console.log('request error', error)
   },
   responseInterceptorsHook: (response) => {
+    const userSession = userSessionStore()
+
     if (response.data.code == '5001') {
       showErrorMsgbox('', response.data.msg)
     }

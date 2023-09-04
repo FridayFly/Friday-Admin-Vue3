@@ -80,7 +80,7 @@ export default class HttpWrapper {
     return this.request(params)
   }
 
-  get(params: RequestConfig): Promise<any> {
+  get<T = any>(params: RequestConfig): Promise<T> {
     params.method = 'GET'
     return this.request(params)
   }

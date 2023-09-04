@@ -7,9 +7,11 @@
         <menu-item :menu="menuItem" v-for="menuItem in menu.children" :key="menuItem.id" />
     </el-sub-menu>
     <!--可点击的菜单-->
-    <el-menu-item :index="menu.id.toString()" v-if="menu.menuType == 'PAGE' && menu.show">
-        <sys-icon :name="menu.ico"></sys-icon> <span>{{ menu.menuName }}</span>
-    </el-menu-item>
+    <app-link to="/home/about">
+        <el-menu-item :index="menu.id.toString()" v-if="menu.menuType == 'PAGE' && menu.show">
+            <sys-icon :name="menu.ico"></sys-icon> <span>{{ menu.menuName }}</span>
+        </el-menu-item>
+    </app-link>
 </template>
 
 <script setup lang="ts">

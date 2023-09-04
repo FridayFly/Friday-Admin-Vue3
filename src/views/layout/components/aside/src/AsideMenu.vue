@@ -20,8 +20,8 @@ import { storeToRefs } from 'pinia'
 import { interfaceSettingStore } from '@/stores/modules/InterfaceSetting'
 import logoUrl from '@/assets/images/logo.png'
 import MenuItem from './MenuItem.vue'
-import { CustomerCommonInfoStore } from '@/stores/modules/CommonInfo'
-const commonInfo = CustomerCommonInfoStore()
+import { customerCommonInfoStore } from '@/stores/modules/CommonInfo'
+const commonInfo = customerCommonInfoStore()
 const interfaceSetting = interfaceSettingStore()
 const { isCollapse } = storeToRefs(interfaceSetting)
 

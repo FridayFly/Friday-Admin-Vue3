@@ -15,5 +15,7 @@ export const userSessionStore = defineStore('user-info', {
       this.$reset()
     }
   },
-  persist: true
+  persist: {
+    storage: sessionStorage
+  }
 })
