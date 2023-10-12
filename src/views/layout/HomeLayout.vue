@@ -11,12 +11,12 @@ const siteConfig = siteConfigStore();
             <TopHeader />
             <el-main>
                 <el-scrollbar>
-                    <div class="pl-2">
+                    <div class="p-2">
                         <RouterView />
                     </div>
                 </el-scrollbar>
             </el-main>
-            <el-footer style="height: var(--fr-top-footer-height);" class="text-center">
+            <el-footer style="height: var(--fr-top-footer-height);" class="flex justify-center items-center">
                 <span class="text-sm text text-neutral-400">{{
                     siteConfig.getCopyright }}</span>
             </el-footer>
@@ -26,5 +26,6 @@ const siteConfig = siteConfigStore();
 <style scoped lang="scss">
 .el-main {
     --el-main-padding: 0px;
+    background-color: var(--el-bg-color-page);
 }
 </style>

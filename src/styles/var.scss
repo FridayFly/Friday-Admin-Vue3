@@ -1,8 +1,9 @@
-@forward 'element-plus/theme-chalk/src/common/var.scss' with (  $menu: (
-    ('item-height': 42px)),
-);
 
+@forward 'element-plus/theme-chalk/src/common/var.scss' with ($menu: (('item-height': 42px)),
+);
 :root {
     --fr-top-header-height: 60px;
     --fr-top-footer-height: 40px;
+    --table-header-bg-color:#fafafa;
+    --table-header-split-color: rgba(0, 0, 0, .06);
 }

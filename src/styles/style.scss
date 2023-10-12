@@ -1,0 +1,41 @@
+svg {
+    outline: none;
+}
+:root {
+    .el-button {
+            background-color: var(--el-button-bg-color, var(--el-color-white));
+            &:focus {
+                border-color: var(--el-button-border-color);
+                background-color: var(--el-button-bg-color);
+            }
+    
+            &:hover {
+                color: var(--el-button-hover-text-color);
+                border-color: var(--el-button-hover-border-color);
+                background-color: var(--el-button-hover-bg-color);
+            }
+        }
+
+    .el-table {
+        --el-table-header-bg-color: var(--table-header-bg-color);
+        --el-table-header-text-color: var(--el-text-color-primary);
+        font-size: var(--el-font-size-base);
+        thead {
+            th {
+                font-weight: 400;
+        /*         &::before{
+                    position: absolute;
+                    top: 50%;
+                    right: 0;
+                    width: 1px;
+                    height: 1.6em;
+                    background-color: var(--table-header-split-color);
+                    transform: translateY(-50%);
+                    transition: background-color .3s;
+                    content: "";
+                } */
+            }
+            
+        }
+    }
+}
