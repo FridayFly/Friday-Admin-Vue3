@@ -62,7 +62,6 @@ export default class HttpWrapper {
   }
 
   request(params: RequestConfig): Promise<any> {
-    console.log('request|', params)
     return new Promise((resolve, reject) => {
       this.axiosInstance
         .request<any, AxiosResponse<any>>(params)

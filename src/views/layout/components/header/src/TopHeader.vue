@@ -23,8 +23,10 @@
                 <div class="flex items-center px-2">
                     <el-breadcrumb separator="/">
                         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-                        <el-breadcrumb-item><a href="/">组织机构</a></el-breadcrumb-item>
-                        <el-breadcrumb-item>系统帐户</el-breadcrumb-item>
+                        <el-breadcrumb-item v-for="nav in breadNavs" :key="nav.id">
+                            {{ nav.title }}
+                        </el-breadcrumb-item>
+
                     </el-breadcrumb>
                 </div>
             </div>
@@ -82,6 +84,7 @@ import { useFullscreen } from '@vueuse/core'
 import { userSessionStore } from '@/stores/modules/UserSessionInfo'
 import { logout as logoutApi } from '@/api/permission/user'
 import { useRouter } from 'vue-router'
+import { customerCommonInfoStore } from '@/stores/modules/CommonInfo'
 
 const router = useRouter()
 const { isFullscreen, toggle: toogleFullScreen } = useFullscreen()
@@ -92,8 +95,11 @@ const state = reactive({
 })
 const { squareUrl } = toRefs(state)
 const interfaceSetting = interfaceSettingStore()
+const commonInfo = customerCommonInfoStore()
+
 const userSession = userSessionStore()
 const { isCollapse } = storeToRefs(interfaceSetting)
+const { breadNavs } = storeToRefs(commonInfo)
 
 const toggleAsideMenu = () => {
     interfaceSetting.toggleMenuCollapse()

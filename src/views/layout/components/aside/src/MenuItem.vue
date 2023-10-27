@@ -19,7 +19,7 @@
 export interface Menu {
     id: number
     menuName: string
-    url?: string | null
+    url: string
     target?: string | null
     ico?: string | null
     menuType: string

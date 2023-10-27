@@ -74,7 +74,7 @@ const initOptions: InitOptions = {
     if (requestConfig.showGlobalErrorMsgBox == undefined || requestConfig.showGlobalErrorMsgBox) {
       showErrorMsgbox('', error.message)
     }
-    console.log('response error', error)
+    // console.log('response error', error)
   }
 }
 

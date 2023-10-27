@@ -28,11 +28,7 @@ export function applyRouterGuard(router: Router) {
       // If router is not added, do added
       const routes = await commonInfo.buildRoutes()
       routes.forEach((route) => {
-        if (route.meta!.isSinglePage) {
-          router.addRoute(route as unknown as RouteRecordRaw)
-        } else {
-          router.addRoute('defaultRoute', route as unknown as RouteRecordRaw)
-        }
+        router.addRoute('defaultRoute', route as unknown as RouteRecordRaw)
       })
       commonInfo.setRouteAdded(true)
       // Borwser refresh route redirect
@@ -40,6 +36,8 @@ export function applyRouterGuard(router: Router) {
     }
 
     // If user signed in and to path is '/', take first menu page and redirect to this page
+    // maybe we need write a function to get the defaut home page url which need to redirect when home page opened.
+    // because the Breadcrumb need put home page title and ico
     if (to.path == '/') {
       if (commonInfo.routes.length > 0) {
         next(commonInfo.routes[0])
@@ -48,5 +46,10 @@ export function applyRouterGuard(router: Router) {
       // return 404
     }
     next()
+  })
+
+  router.afterEach((to, from) => {
+    const commonInfo = customerCommonInfoStore()
+    commonInfo.setNavs(to.matched)
   })
 }

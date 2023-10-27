@@ -49,7 +49,7 @@ function startSearch () {
 function resetFrm () {
 
 }
-const handleEdit = (index: number, row) => {
+const handleEdit = (index: number, row: any) => {
     console.log(row)
 }
 </script>
